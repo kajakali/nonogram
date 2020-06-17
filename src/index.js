@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
+
+//TODO add in the material ui theme here!!!
+
 
 ReactDOM.render(
   <React.StrictMode>
