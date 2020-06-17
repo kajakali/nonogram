@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Square from '../../components/Square/Square';
 
-class PatternGrid extends Component {
-    render(){
+const PatternGrid =(props) => {
+
         return(
             <>
                 <h1>I'm a grid!</h1>
-                <Square  />
+                <Square  backgroundColor='green' />
 
             </>
         );
-    };
+
 };
 
 export default PatternGrid;

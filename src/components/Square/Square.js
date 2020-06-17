@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 
-class Square extends Component {
-    render() {
-        return(
+const Square =(props) => {
+    return(
+        <>
             <div style={{
                 backgroundColor: 'almond',
                 height:'5px', 
                 width: '5px' }}    
             />
-            //{this.props.backgroundColor}
-                
-        );
-    };
+            <p>I am {props.backgroundColor}</p>
+        </>
+
+            
+    );
 };
 
 export default Square;
