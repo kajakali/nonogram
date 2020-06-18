@@ -11,27 +11,36 @@ class PatternGrid extends Component {
 
     state = ({
         pattern: [],
-        selectedColor: purple
+        selectedColor: purple,
+        colorOptions: []
     });
 
     componentDidMount() {
         this.setState({
             pattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
+            colorOptions: [pink, orange, green]
         });
     }
+
+
     changeSquare = (outerIndex, innerIndex) => {
         let newArray = this.state.pattern;
         let newElement = this.state.pattern[outerIndex];
-        newElement.splice(innerIndex, 1, 'purple');
+        newElement.splice(innerIndex, 1, this.state.selectedColor);
         newArray.splice(outerIndex, 1, newElement);
         this.setState({
             pattern: newArray
         });
-
-        
- 
     
     }
+    changeColor = (color, colorIndex) => {
+        console.log('the color info:', color, colorIndex);
+        this.setState({
+            selectedColor: color
+        });
+        console.log('state', this.state);
+    }    
+
 
     render(){
 
@@ -41,9 +50,14 @@ class PatternGrid extends Component {
         return(
             <>
                 <h1>I'm a grid!</h1>
-                <Square  backgroundColor={pink} />
-                <Square  backgroundColor={orange} />
-                <Square  backgroundColor={green} />
+                <h2>Color Choices!!!</h2>
+                <Box>
+                {this.state.colorOptions.map((color, colorIndex) => (
+                    <Square key={colorIndex} backgroundColor={color} onClick ={() => this.changeColor(color, colorIndex)}/>
+                ))};
+                </Box>
+
+
                 <Box>
                 {this.state.pattern.map((element, outerIndex) => (
                     <Box key={outerIndex}>
