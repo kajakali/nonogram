@@ -1,16 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Square from '../../components/Square/Square';
 import Box from '@material-ui/core/Box';
 
-const PatternGrid =(props) => {
-    const changeSquare = (outerIndex, innerIndex) =>{
-        console.log('outer index:', outerIndex, 'inner index:', innerIndex);
+const pink = '#F7BCAF';
+const orange = '#F7DEAF'; 
+const green = '#CCF7AF';
+const purple = '#CAAFF7';
+
+class PatternGrid extends Component {
+
+    state = ({
+        pattern: [],
+        selectedColor: purple
+    });
+
+    componentDidMount() {
+        this.setState({
+            pattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
+        });
     }
-    const pink = '#F7BCAF';
-    const orange = '#F7DEAF'; 
-    const green = '#CCF7AF';
-    const array = [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]];
-    //const otherArray = [[{id: },{},{},{}],[{},{},{},{}],[{},{},{},{}],[{},{},{},{}]];
+    changeSquare = (outerIndex, innerIndex) => {
+        let newArray = this.state.pattern;
+        let newElement = this.state.pattern[outerIndex];
+        newElement.splice(innerIndex, 1, 'purple');
+        newArray.splice(outerIndex, 1, newElement);
+        this.setState({
+            pattern: newArray
+        });
+
+        
+ 
+    
+    }
+
+    render(){
+
+
+    const { classes } = this.props;
+
         return(
             <>
                 <h1>I'm a grid!</h1>
@@ -18,10 +45,10 @@ const PatternGrid =(props) => {
                 <Square  backgroundColor={orange} />
                 <Square  backgroundColor={green} />
                 <Box>
-                {array.map((element, outerIndex) => (
+                {this.state.pattern.map((element, outerIndex) => (
                     <Box key={outerIndex}>
                         {element.map((square, innerIndex) => (
-                            <Square key={innerIndex} backgroundColor={square} onClick={() => changeSquare(outerIndex, innerIndex)}/>
+                            <Square key={innerIndex} backgroundColor={square} onClick={() => this.changeSquare(outerIndex, innerIndex)}/>
                         ))}
                     </Box>
                     
@@ -31,6 +58,8 @@ const PatternGrid =(props) => {
 
             </>
         );
+    }
+    
 
 };
 
