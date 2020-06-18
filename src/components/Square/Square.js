@@ -22,7 +22,8 @@ export default function Square(props) {
 
     return(
         <>
-            <div className={`${classes.root} ${classes.color}`}     
+            <div className={`${classes.root} ${classes.color}`}  
+            onClick={props.onClick}   
             />
         </>
 
