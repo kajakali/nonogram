@@ -10,26 +10,26 @@ const purple = '#CAAFF7';
 class PatternGrid extends Component {
 
     state = ({
-        pattern: [],
+        currentPattern: [],
         selectedColor: purple,
         colorOptions: []
     });
 
     componentDidMount() {
         this.setState({
-            pattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
+            currentPattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
             colorOptions: [pink, orange, green]
         });
     }
 
 
     changeSquare = (outerIndex, innerIndex) => {
-        let newArray = this.state.pattern;
-        let newElement = this.state.pattern[outerIndex];
+        let newArray = this.state.currentPattern;
+        let newElement = this.state.currentPattern[outerIndex];
         newElement.splice(innerIndex, 1, this.state.selectedColor);
         newArray.splice(outerIndex, 1, newElement);
         this.setState({
-            pattern: newArray
+            currentPattern: newArray
         });
     
     }
@@ -59,7 +59,7 @@ class PatternGrid extends Component {
 
 
                 <Box>
-                {this.state.pattern.map((element, outerIndex) => (
+                {this.state.currentPattern.map((element, outerIndex) => (
                     <Box key={outerIndex}>
                         {element.map((square, innerIndex) => (
                             <Square key={innerIndex} backgroundColor={square} onClick={() => this.changeSquare(outerIndex, innerIndex)}/>
