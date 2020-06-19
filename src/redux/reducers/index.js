@@ -1,5 +1,11 @@
 import { combineReducers } from 'redux';
-import pattern from './pattern';
+
+const pattern = (state = [], action) => {
+    if(action.type === 'SET_PATTERN'){
+        return action.payload;
+    }
+    return state;
+}
 
 const rootReducer = combineReducers({
     pattern,

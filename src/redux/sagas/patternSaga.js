@@ -4,9 +4,10 @@ import axios from 'axios';
 
 function* fetchPattern(action) {
     try {
-        yield console.log(action.payload);
+        // action.payload is shaped like {id: 1}
         const response = yield axios.get(`/pattern/${action.payload.id}`);
-        yield console.log(response);
+        yield console.log(response.data[0].masterPattern);
+        yield put({type: 'SET_PATTERN', payload: response.data[0]});
     }
     catch (error) {
 

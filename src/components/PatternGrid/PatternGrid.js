@@ -14,7 +14,8 @@ class PatternGrid extends Component {
         currentPattern: [],
         selectedColor: purple,
         colorOptions: [],
-        databasePattern: []
+        databasePattern: [],
+        masterPattern: []
     });
 
     componentDidMount() {
@@ -22,9 +23,17 @@ class PatternGrid extends Component {
             currentPattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
             colorOptions: [pink, orange, green]
         });
-        //this.props.dispatch({type: 'GET_PATTERN', payload:{id: 1}});
+        this.props.dispatch({type: 'FETCH_PATTERN', payload:{id: 1}});
     }
+    componentDidUpdate(prevProps, prevState) {
+        if(this.props.store.pattern.masterPattern !== prevProps.store.pattern.masterPattern){
+            console.log('hi!');
+            this.setState({
+                masterPattern: this.props.store.pattern.masterPattern,
+            })
+        }
 
+    }
 
     changeSquare = (outerIndex, innerIndex) => {
         let newArray = this.state.currentPattern;
@@ -53,11 +62,13 @@ class PatternGrid extends Component {
         return(
             <>
                 <h1>I'm a grid!</h1>
+                <h2>here's the pattern we've picked</h2>
+                {JSON.stringify(this.state.masterPattern)};
                 <h2>Color Choices!!!</h2>
                 <Box>
                 {this.state.colorOptions.map((color, colorIndex) => (
                     <Square key={colorIndex} backgroundColor={color} onClick ={() => this.changeColor(color, colorIndex)}/>
-                ))};
+                ))}
                 </Box>
 
 

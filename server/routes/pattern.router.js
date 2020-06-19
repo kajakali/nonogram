@@ -3,9 +3,14 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
-    console.log('in router!');
-    res.sendStatus(200);
+router.get('/:id', (req, res) => {
+    let sqlText = `SELECT * FROM "pattern" WHERE "id" = $1`;
+    pool.query(sqlText, [req.params.id]).then( response =>{
+        res.send(response.rows);
+    }).catch( error => {
+        console.log ('error in getting pattern with id:', req.params.id, error);
+        res.sendStatus(500);
+    });
 });
 
 

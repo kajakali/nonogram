@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 /* Routes */
-app.use('/patterns', patternRouter);
+app.use('/pattern', patternRouter);
 
 
 // Serve static files
