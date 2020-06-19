@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Square from '../../components/Square/Square';
 import Box from '@material-ui/core/Box';
+import { connect } from 'react-redux';
 
 const pink = '#F7BCAF';
 const orange = '#F7DEAF'; 
@@ -12,7 +13,8 @@ class PatternGrid extends Component {
     state = ({
         currentPattern: [],
         selectedColor: purple,
-        colorOptions: []
+        colorOptions: [],
+        databasePattern: []
     });
 
     componentDidMount() {
@@ -20,6 +22,7 @@ class PatternGrid extends Component {
             currentPattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
             colorOptions: [pink, orange, green]
         });
+        //this.props.dispatch({type: 'GET_PATTERN', payload:{id: 1}});
     }
 
 
@@ -76,5 +79,8 @@ class PatternGrid extends Component {
     
 
 };
+const mapStateToProps = (store) => ({
+    store
+  });
 
-export default PatternGrid;
+export default connect(mapStateToProps)(PatternGrid);
