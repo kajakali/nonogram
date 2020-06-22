@@ -13,6 +13,18 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+    console.log(req.body); //req.body is an array of arrays for each row
+    let sqlText = `INSERT INTO "pattern" ("masterPattern") VALUES($1)`;
+    pool.query(sqlText, [req.body.pattern]).then( () =>{
+        res.sendStatus(200);
+    }).catch( error => {
+        console.log('error in adding that pattern to the database', error);
+        res.sendStatus(500);
+    });
+});
+
+
 
 
 // GET the threads that a specific project will need

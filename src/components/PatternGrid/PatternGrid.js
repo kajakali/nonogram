@@ -22,9 +22,9 @@ class PatternGrid extends Component {
     componentDidMount() {
         this.setState({
             currentPattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
-            colorOptions: [pink, orange, green]
+            colorOptions: [pink, orange, green, purple]
         });
-        this.props.dispatch({type: 'FETCH_PATTERN', payload:{id: 1}});
+        this.props.dispatch({type: 'FETCH_PATTERN', payload:{id: 3}});
     }
     componentDidUpdate(prevProps, prevState) {
         if(this.props.store.pattern.masterPattern !== prevProps.store.pattern.masterPattern){
@@ -37,7 +37,8 @@ class PatternGrid extends Component {
     }
     createPattern = () => {
         console.log('create a pattern!');
-        //TODO need to make an array and send it to the server. for now, it should just be a standard array
+        this.props.dispatch({type: 'SEND_PATTERN', payload: {pattern: this.state.currentPattern}})
+ 
     }
     changeSquare = (outerIndex, innerIndex) => {
         let newArray = this.state.currentPattern;
@@ -76,9 +77,14 @@ class PatternGrid extends Component {
                     <Square key={colorIndex} backgroundColor={color} onClick ={() => this.changeColor(color, colorIndex)}/>
                 ))}
                 </Box>
+                <Box>
+                <p>selected color: </p>
+                <Square key="selected" backgroundColor={this.state.selectedColor} />
+                </Box>
 
                     {/**this is where the array is displayed as clickable squares */}
                 <Box>
+                <p>make a pattern here:</p>
                 {this.state.currentPattern.map((element, outerIndex) => (
                     <Box key={outerIndex}>
                         {element.map((square, innerIndex) => (
