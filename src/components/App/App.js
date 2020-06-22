@@ -6,7 +6,14 @@ import PatternGrid from '../../components/PatternGrid/PatternGrid';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+    <header>
+      <h1>colorful logic problems!</h1>
+      <p>Hello. This is not a complete app, it's just a place for
+      me to work on how to build a nonogram/griddler type puzzle in react
+      Right now, you can select a color from one of the color choice squares
+      and then any square you click will turn that color. I started this around June 15th, 2020.</p>
+    </header>
+{/*       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -19,7 +26,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
       <PatternGrid />
     </div>
   );
