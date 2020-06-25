@@ -21,14 +21,18 @@ class PatternGrid extends Component {
 
     componentDidMount() {
         this.setState({
+            //current pattern is the one that is displayed on the page as a grid of squares. Eventually it will come from the server.
             currentPattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
+            //color options are displayed on the page as a row of colored squares. Eventually they will be either chosen from the master pattern in play mode or added to by a color picker in create mode
             colorOptions: [pink, orange, green, purple]
         });
+        //when the page loads, go get the selected pattern. Eventually I will use a match param (once I have lots of patterns in the database.
+        //in the near term, I'll probably use a select to choose which pattern to fetch)
         this.props.dispatch({type: 'FETCH_PATTERN', payload:{id: 3}});
     }
     componentDidUpdate(prevProps, prevState) {
+        //if a new master pattern has arrived from the server, set the master pattern
         if(this.props.store.pattern.masterPattern !== prevProps.store.pattern.masterPattern){
-            console.log('hi!');
             this.setState({
                 masterPattern: this.props.store.pattern.masterPattern,
             })
@@ -36,13 +40,16 @@ class PatternGrid extends Component {
 
     }
     createPattern = () => {
+        //when the button is clicked, send the current pattern to the server
         console.log('create a pattern!');
         this.props.dispatch({type: 'SEND_PATTERN', payload: {pattern: this.state.currentPattern}})
  
     }
     changeSquare = (outerIndex, innerIndex) => {
+        //sqitch the color of a square in the current pattern show on the page by clicking it
         let newArray = this.state.currentPattern;
         let newElement = this.state.currentPattern[outerIndex];
+        //find the square in the array that has been clicked on and change its color to the selected color
         newElement.splice(innerIndex, 1, this.state.selectedColor);
         newArray.splice(outerIndex, 1, newElement);
         this.setState({
@@ -51,11 +58,11 @@ class PatternGrid extends Component {
     
     }
     changeColor = (color, colorIndex) => {
+        //change the selected color by clicking on one of the color options
         console.log('the color info:', color, colorIndex);
         this.setState({
             selectedColor: color
         });
-        console.log('state', this.state);
     }    
 
 
