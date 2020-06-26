@@ -3,6 +3,7 @@ import Square from '../../components/Square/Square';
 import Box from '@material-ui/core/Box';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import PatternTable from '../../PatternTable/PatternTable';
 
 const pink = '#F7BCAF';
 const orange = '#F7DEAF'; 
@@ -12,11 +13,15 @@ const purple = '#CAAFF7';
 class PatternGrid extends Component {
 
     state = ({
+        //this is the pattern that's being shown in color in the browser
         currentPattern: [],
+        //this is the color currently being used to edit the pattern
         selectedColor: purple,
         colorOptions: [],
         databasePattern: [],
-        masterPattern: []
+        //this is the pattern that we are supposed to be matching to, the one that is currently shown as an array
+        masterPattern: [],
+        patternId: 0
     });
 
     componentDidMount() {
@@ -26,16 +31,19 @@ class PatternGrid extends Component {
             //color options are displayed on the page as a row of colored squares. Eventually they will be either chosen from the master pattern in play mode or added to by a color picker in create mode
             colorOptions: [pink, orange, green, purple]
         });
-        //when the page loads, go get the selected pattern. Eventually I will use a match param (once I have lots of patterns in the database.
-        //in the near term, I'll probably use a select to choose which pattern to fetch)
-        this.props.dispatch({type: 'FETCH_PATTERN', payload:{id: 3}});
+  
     }
     componentDidUpdate(prevProps, prevState) {
         //if a new master pattern has arrived from the server, set the master pattern
         if(this.props.store.pattern.masterPattern !== prevProps.store.pattern.masterPattern){
             this.setState({
                 masterPattern: this.props.store.pattern.masterPattern,
-            })
+            });
+        }
+        //when a pattern is selected, go get the selected pattern. Eventually I will use a match param (once I have lots of patterns in the database.
+        //in the near term, I'll probably use a select to choose which pattern to fetch)
+        if(this.state.patternId !== prevState.patternId){
+            this.props.dispatch({type: 'FETCH_PATTERN', payload:{id: this.state.patternId}});
         }
 
     }
@@ -65,6 +73,10 @@ class PatternGrid extends Component {
         });
     }    
 
+    selectPattern = (id) => {
+        console.log('click', id);
+        this.setState({ patternId: id});
+    }
 
     render(){
 
@@ -74,8 +86,23 @@ class PatternGrid extends Component {
         return(
             <>
                 <h1>I'm a grid!</h1>
-                <h2>here's the pattern we've picked</h2>
-                {JSON.stringify(this.state.masterPattern)};
+                <h2>here's the pattern we've picked (this one is not editable!)</h2>
+
+                {/**this is the master pattern that we just got back from the server - we can't edit this one */}
+                <Box>
+                <p>this is what the selected pattern looks like:</p>
+                {this.state.masterPattern.map((element, outerIndex) => (
+                    <Box key={outerIndex}>
+                        {element.map((square, innerIndex) => (
+                            <Square key={innerIndex} backgroundColor={square} onClick={() => console.log(outerIndex, innerIndex)}/>
+                        ))}
+                    </Box>
+                    
+                ))}
+                </Box>
+
+
+
                 <h2>Color Choices!!!</h2>
 
                 {/**this is where the possible colors are turned into clickable squares */}
@@ -89,7 +116,7 @@ class PatternGrid extends Component {
                 <Square key="selected" backgroundColor={this.state.selectedColor} />
                 </Box>
 
-                    {/**this is where the array is displayed as clickable squares */}
+                    {/**this is where the array (that you're currently editing!!!) is displayed as clickable squares */}
                 <Box>
                 <p>make a pattern here:</p>
                 {this.state.currentPattern.map((element, outerIndex) => (
@@ -111,6 +138,8 @@ class PatternGrid extends Component {
                     New array
                 </Button>
 
+
+                <PatternTable select={(id) => this.selectPattern(id)}/>
             </>
         );
     }

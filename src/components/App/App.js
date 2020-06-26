@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PatternGrid from '../../components/PatternGrid/PatternGrid';
-import PatternTable from '../../PatternTable/PatternTable';
+
 
 
 //TODO GENERAL:
@@ -32,7 +32,7 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <PatternTable />
+
       <PatternGrid />
     </div>
   );

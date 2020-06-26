@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 class PatternTable extends React.Component{
     state = ({
@@ -26,13 +27,14 @@ class PatternTable extends React.Component{
         return(
 
             <Box>
-                I'll be a table
+                Here's a list of all the patterns in the database
 
                 <TableBody>
                     {this.props.store.patternList.map(item => (<TableRow key={item.id}>
                         <TableCell>{item.id}</TableCell>
                         <TableCell>{item.name}</TableCell>
                         <TableCell>{JSON.stringify(item.masterPattern)}</TableCell>
+                        <TableCell><Button onClick={() => this.props.select(item.id)}>Select</Button></TableCell>
                     </TableRow>))}
                 </TableBody>
 
