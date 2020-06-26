@@ -2,7 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PatternGrid from '../../components/PatternGrid/PatternGrid';
+import PatternTable from '../../PatternTable/PatternTable';
 
+
+//TODO GENERAL:
+//get a router in here so that I can send people to a page to show a pattern to work on by its id
+//get a table of all the patterns in the database
 function App() {
   return (
     <div className="App">
@@ -27,6 +32,7 @@ function App() {
           Learn React
         </a>
       </header> */}
+      <PatternTable />
       <PatternGrid />
     </div>
   );

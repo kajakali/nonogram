@@ -13,6 +13,17 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/', (req, res) => {
+    let sqlText = `SELECT * from "pattern" ORDER BY "id";`;
+    pool.query(sqlText).then( response => {
+        console.log('al the patterns', response.rows);
+        res.send(response.rows);
+    }).catch( error => {
+        console.log('error in getting the pattern list', error);
+        res.sendStatus(500);
+    });
+})
+
 router.post('/', (req, res) => {
     console.log(req.body); //req.body is an array of arrays for each row
     let sqlText = `INSERT INTO "pattern" ("masterPattern") VALUES($1)`;

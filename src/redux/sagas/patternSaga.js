@@ -23,9 +23,21 @@ function* sendPattern(action) {
         console.log('error in send pattern saga', error);
     }
 }
+function* fetchAllPatterns() {
+    try {
+        const response = yield axios.get('/pattern');
+        yield console.log('in all patterns saga', response.data);
+        yield put({type: 'SET_PATTERN_LIST', payload: response.data})
+        //TODO
+    }
+    catch (error) {
+        console.log('error in fetch all patterns saga', error)
+    }
+}
 function* patternSaga() {
     yield takeLatest('FETCH_PATTERN', fetchPattern);
     yield takeLatest('SEND_PATTERN', sendPattern);
+    yield takeLatest('FETCH_ALL_PATTERNS', fetchAllPatterns);
 }
 
 export default patternSaga;
