@@ -33,7 +33,6 @@ class PatternTable extends React.Component{
                     {this.props.store.patternList.map(item => (<TableRow key={item.id}>
                         <TableCell>{item.id}</TableCell>
                         <TableCell>{item.name}</TableCell>
-                        <TableCell>{JSON.stringify(item.masterPattern)}</TableCell>
                         <TableCell><Button onClick={() => this.props.select(item.id)}>Select</Button></TableCell>
                     </TableRow>))}
                 </TableBody>
