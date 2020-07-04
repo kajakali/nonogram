@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import PatternGrid from '../../components/PatternGrid/PatternGrid';
+import Nonogram from '../Nonogram/Nonogram';
 
 
 
@@ -33,7 +33,7 @@ function App() {
         </a>
       </header> */}
 
-      <PatternGrid />
+      <Nonogram />
     </div>
   );
 }

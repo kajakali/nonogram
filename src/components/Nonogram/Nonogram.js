@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import Square from '../../components/Square/Square';
+import Square from '../Square/Square';
 import Box from '@material-ui/core/Box';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import PatternTable from '../../PatternTable/PatternTable';
+import DisplayPattern from '../DisplayPattern/DisplayPattern';
 
 const pink = '#F7BCAF';
 const orange = '#F7DEAF'; 
 const green = '#CCF7AF';
 const purple = '#CAAFF7';
 
-class PatternGrid extends Component {
+class Nonogram extends Component {
 
     state = ({
         //this is the pattern that's being shown in color in the browser
@@ -85,8 +86,9 @@ class PatternGrid extends Component {
 
         return(
             <>
-                <h1>I'm a grid!</h1>
-                <h2>here's the pattern we've picked (this one is not editable!)</h2>
+                <h1>I'm a nonogram!</h1>
+
+                <h2>here's the pattern you've selected from the table of patterns (this one is not editable!)</h2>
 
                 {/**this is the master pattern that we just got back from the server - we can't edit this one */}
                 <Box>
@@ -119,14 +121,8 @@ class PatternGrid extends Component {
                     {/**this is where the array (that you're currently editing!!!) is displayed as clickable squares */}
                 <Box>
                 <p>make a pattern here:</p>
-                {this.state.currentPattern.map((element, outerIndex) => (
-                    <Box key={outerIndex}>
-                        {element.map((square, innerIndex) => (
-                            <Square key={innerIndex} backgroundColor={square} onClick={() => this.changeSquare(outerIndex, innerIndex)}/>
-                        ))}
-                    </Box>
-                    
-                ))}
+                <h3>here's the display pattern component displaying the master pattern</h3>
+                <DisplayPattern patternToShow={this.state.currentPattern} changeSquare={this.changeSquare}/>
                 </Box>
 
                 {/**here's where I'll have a button to make a new array */}
@@ -150,4 +146,4 @@ const mapStateToProps = (store) => ({
     store
   });
 
-export default connect(mapStateToProps)(PatternGrid);
+export default connect(mapStateToProps)(Nonogram);
