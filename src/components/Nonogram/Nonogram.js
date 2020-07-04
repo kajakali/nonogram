@@ -15,7 +15,7 @@ class Nonogram extends Component {
 
     state = ({
         //this is the pattern that's being shown in color in the browser
-        currentPattern: [],
+        patternBeingEdited: [],
         //this is the color currently being used to edit the pattern
         selectedColor: purple,
         colorOptions: [],
@@ -28,7 +28,7 @@ class Nonogram extends Component {
     componentDidMount() {
         this.setState({
             //current pattern is the one that is displayed on the page as a grid of squares. Eventually it will come from the server.
-            currentPattern: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
+            patternBeingEdited: [[pink, orange, green, green], [pink, green, orange, orange], [orange, pink, pink, green], [green, orange, pink, pink]],
             //color options are displayed on the page as a row of colored squares. Eventually they will be either chosen from the master pattern in play mode or added to by a color picker in create mode
             colorOptions: [pink, orange, green, purple]
         });
@@ -51,18 +51,18 @@ class Nonogram extends Component {
     createPattern = () => {
         //when the button is clicked, send the current pattern to the server
         console.log('create a pattern!');
-        this.props.dispatch({type: 'SEND_PATTERN', payload: {pattern: this.state.currentPattern}})
+        this.props.dispatch({type: 'SEND_PATTERN', payload: {pattern: this.state.patternBeingEdited}})
  
     }
-    changeSquare = (outerIndex, innerIndex) => {
+    changeSquareColor = (outerIndex, innerIndex) => {
         //sqitch the color of a square in the current pattern show on the page by clicking it
-        let newArray = this.state.currentPattern;
-        let newElement = this.state.currentPattern[outerIndex];
+        let newArray = this.state.patternBeingEdited;
+        let newElement = this.state.patternBeingEdited[outerIndex];
         //find the square in the array that has been clicked on and change its color to the selected color
         newElement.splice(innerIndex, 1, this.state.selectedColor);
         newArray.splice(outerIndex, 1, newElement);
         this.setState({
-            currentPattern: newArray
+            patternBeingEdited: newArray
         });
     
     }
@@ -116,7 +116,7 @@ class Nonogram extends Component {
                 <Box>
                 <p>make a pattern here:</p>
                 <h3>here's the display pattern component displaying the master pattern</h3>
-                <DisplayPattern patternToShow={this.state.currentPattern} changeSquare={this.changeSquare}/>
+                <DisplayPattern patternToShow={this.state.patternBeingEdited} changeSquareColor={this.changeSquareColor}/>
                 </Box>
 
                 {/**here's where I'll have a button to make a new array */}
@@ -125,7 +125,7 @@ class Nonogram extends Component {
                     color='primary'
                     size='small'    
                 >
-                    New array
+                    Save this pattern!
                 </Button>
 
 

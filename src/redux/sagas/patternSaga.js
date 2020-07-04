@@ -17,7 +17,7 @@ function* sendPattern(action) {
     try {
         yield console.log(action.payload);
         yield axios.post('/pattern', action.payload);
-        //TODO right here - at the moment the array is simply added to the database, but nothing changes afterward.
+        yield put({type: 'FETCH_ALL_PATTERNS'});
     }
     catch (error) {
         console.log('error in send pattern saga', error);
@@ -27,11 +27,11 @@ function* fetchAllPatterns() {
     try {
         const response = yield axios.get('/pattern');
         yield console.log('in all patterns saga', response.data);
-        yield put({type: 'SET_PATTERN_LIST', payload: response.data})
+        yield put({type: 'SET_PATTERN_LIST', payload: response.data});
         //TODO
     }
     catch (error) {
-        console.log('error in fetch all patterns saga', error)
+        console.log('error in fetch all patterns saga', error);
     }
 }
 function* patternSaga() {
