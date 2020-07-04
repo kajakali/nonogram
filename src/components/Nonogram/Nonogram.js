@@ -93,14 +93,8 @@ class Nonogram extends Component {
                 {/**this is the master pattern that we just got back from the server - we can't edit this one */}
                 <Box>
                 <p>this is what the selected pattern looks like:</p>
-                {this.state.masterPattern.map((element, outerIndex) => (
-                    <Box key={outerIndex}>
-                        {element.map((square, innerIndex) => (
-                            <Square key={innerIndex} backgroundColor={square} onClick={() => console.log(outerIndex, innerIndex)}/>
-                        ))}
-                    </Box>
-                    
-                ))}
+                <DisplayPattern patternToShow={this.state.masterPattern} />
+    
                 </Box>
 
 

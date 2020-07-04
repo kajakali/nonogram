@@ -16,7 +16,7 @@ function DisplayPattern(props) {
     {props.patternToShow && props.patternToShow.map((element, outerIndex) => (
                     <Box key={outerIndex}>
                         {element.map((square, innerIndex) => (
-                            <Square key={innerIndex} backgroundColor={square} onClick={() => props.changeSquare(outerIndex, innerIndex)}/>
+                            <Square key={innerIndex} backgroundColor={square} onClick={() => props.changeSquare && props.changeSquare(outerIndex, innerIndex)}/>
                         ))}
                     </Box>
                     
