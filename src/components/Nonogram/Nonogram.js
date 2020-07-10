@@ -66,8 +66,53 @@ class Nonogram extends Component {
         });
     
     }
-    changeArraySize = (array) => {
-        console.log('the array right now is', array)
+    changeArraySize = (array, resize) => {
+        console.log('the array right now is', array, 'inner dimension', array[0].length, 'outer dimension', array.length);
+        switch(resize) {
+            case "wider":
+                {
+                    console.log("wider");
+                    let newArray = array;
+                    for(let i = 0; i<array.length; i++){
+                        newArray[i].push('FFFFFF');
+                    }
+                    this.setState({array:newArray});
+                }
+                break;
+            case "narrower":
+                {
+                    console.log("narrower");
+                    let newArray = array;
+                    for(let i = 0; i<array.length; i++){
+                        newArray[i].pop();
+                    }
+                    this.setState({array:newArray});
+                }
+
+                break;
+            case "taller":
+                {
+                    console.log("taller");
+                    let newArray = array;
+                    let newRow = [];
+                    for(let i=0; i<array[0].length; i++){
+                        newRow.push("FFFFFF");
+                    }
+                    newArray.push(newRow);
+                    this.setState({array:newArray});
+                }
+                break;
+            case "shorter":
+                {
+                    console.log("shorter");
+                    let newArray = array;
+                    newArray.pop();
+                    this.setState({array:newArray});
+                }
+                break;
+            default:
+                console.log("none");
+        }
     }
     changeColor = (color, colorIndex) => {
         //change the selected color by clicking on one of the color options
@@ -118,7 +163,7 @@ class Nonogram extends Component {
                     {/**this is where the array (that you're currently editing!!!) is displayed as clickable squares */}
                 <Box>
                 <p>make a pattern here:</p>
-                <ChooseArraySize patternArray={this.state.patternBeingEdited} changeArraySize={() => this.changeArraySize(this.state.patternBeingEdited)}/>
+                <ChooseArraySize patternArray={this.state.patternBeingEdited} changeArraySize={(resize) => this.changeArraySize(this.state.patternBeingEdited, resize)}/>
                 <h3>here's the display pattern component displaying the master pattern</h3>
                 <DisplayPattern patternToShow={this.state.patternBeingEdited} changeSquareColor={this.changeSquareColor}/>
                 </Box>
