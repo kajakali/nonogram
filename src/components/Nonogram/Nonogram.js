@@ -50,6 +50,8 @@ class Nonogram extends Component {
     }
     createPattern = () => {
         //when the button is clicked, send the current pattern to the server
+        //TODO actually when button is clicked, open a modal that lets the user add a name, and then on Click
+        //inside the modal, send the pattern to the server
         console.log('create a pattern!');
         this.props.dispatch({type: 'SEND_PATTERN', payload: {pattern: this.state.patternBeingEdited}})
  
