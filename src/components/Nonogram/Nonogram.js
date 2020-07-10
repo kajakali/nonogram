@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import PatternTable from '../../PatternTable/PatternTable';
 import DisplayPattern from '../DisplayPattern/DisplayPattern';
+import ChooseArraySize from '../ChooseArraySize/ChooseArraySize';
 
 const pink = '#F7BCAF';
 const orange = '#F7DEAF'; 
@@ -41,8 +42,7 @@ class Nonogram extends Component {
                 masterPattern: this.props.store.pattern.masterPattern,
             });
         }
-        //when a pattern is selected, go get the selected pattern. Eventually I will use a match param (once I have lots of patterns in the database.
-        //in the near term, I'll probably use a select to choose which pattern to fetch)
+        
         if(this.state.patternId !== prevState.patternId){
             this.props.dispatch({type: 'FETCH_PATTERN', payload:{id: this.state.patternId}});
         }
@@ -65,6 +65,9 @@ class Nonogram extends Component {
             patternBeingEdited: newArray
         });
     
+    }
+    changeArraySize = (array) => {
+        console.log('the array right now is', array)
     }
     changeColor = (color, colorIndex) => {
         //change the selected color by clicking on one of the color options
@@ -115,6 +118,7 @@ class Nonogram extends Component {
                     {/**this is where the array (that you're currently editing!!!) is displayed as clickable squares */}
                 <Box>
                 <p>make a pattern here:</p>
+                <ChooseArraySize patternArray={this.state.patternBeingEdited} changeArraySize={() => this.changeArraySize(this.state.patternBeingEdited)}/>
                 <h3>here's the display pattern component displaying the master pattern</h3>
                 <DisplayPattern patternToShow={this.state.patternBeingEdited} changeSquareColor={this.changeSquareColor}/>
                 </Box>
