@@ -184,7 +184,7 @@ class Nonogram extends Component {
                 >
                     Save this pattern!
                 </Button>
-                <SubmitPatternButton submitName={this.submitName}/>
+                {/* <SubmitPatternButton submitName={this.submitName}/> */}
 
                 <PatternTable select={(id) => this.selectPattern(id)}/>
             </>

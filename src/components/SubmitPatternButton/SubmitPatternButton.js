@@ -14,13 +14,17 @@ export default function FormDialog(props) {
     setOpen(true);
   };
 
-  const handleClose = (submit) => {
+  const handleClose = () => {
     setOpen(false);
-    if(submit === "submit"){
-        props.submitName("ice cream");
-    }
-
   };
+
+  const handleSubmit = () => {
+    setOpen(false);
+    console.log('hi ice cream');
+        //props.submitName("ice cream");
+  };
+
+  
 
   return (
     <div>
@@ -28,18 +32,16 @@ export default function FormDialog(props) {
         Open form dialog
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">Choose a Name</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
+            Please Name your Pattern
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
-            type="email"
+            label="Pattern Name"
             fullWidth
           />
         </DialogContent>
@@ -47,8 +49,8 @@ export default function FormDialog(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => handleClose("submit")} color="primary">
-            Subscribe
+          <Button onClick={handleSubmit} color="primary">
+            Submit Name!
           </Button>
         </DialogActions>
       </Dialog>
