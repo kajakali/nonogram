@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import PatternTable from '../../PatternTable/PatternTable';
 import DisplayPattern from '../DisplayPattern/DisplayPattern';
 import ChooseArraySize from '../ChooseArraySize/ChooseArraySize';
+import SubmitPatternButton from '../SubmitPatternButton/SubmitPatternButton';
 
 const pink = '#F7BCAF';
 const orange = '#F7DEAF'; 
@@ -68,6 +69,11 @@ class Nonogram extends Component {
         });
     
     }
+
+    submitName = (name) => {
+        console.log("the name of the pattern is", name);
+    }
+
     changeArraySize = (array, resize) => {
         console.log('the array right now is', array, 'inner dimension', array[0].length, 'outer dimension', array.length);
         switch(resize) {
@@ -178,7 +184,7 @@ class Nonogram extends Component {
                 >
                     Save this pattern!
                 </Button>
-
+                <SubmitPatternButton submitName={this.submitName}/>
 
                 <PatternTable select={(id) => this.selectPattern(id)}/>
             </>
