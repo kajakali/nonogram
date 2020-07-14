@@ -75,14 +75,14 @@ class Nonogram extends Component {
     }
 
     changeArraySize = (array, resize) => {
-        console.log('the array right now is', array, 'inner dimension', array[0].length, 'outer dimension', array.length);
+        console.log('the array right now is', array, 'inner dimension', array[0] && array[0].length, 'outer dimension', array && array.length);
         switch(resize) {
             case "wider":
                 {
                     console.log("wider");
                     let newArray = array;
                     for(let i = 0; i<array.length; i++){
-                        newArray[i].push('FFFFFF');
+                        newArray[i].push("#DDDDDD");
                     }
                     this.setState({array:newArray});
                 }
@@ -90,11 +90,14 @@ class Nonogram extends Component {
             case "narrower":
                 {
                     console.log("narrower");
-                    let newArray = array;
+                    if(array[0].length >1){
+                        let newArray = array;
                     for(let i = 0; i<array.length; i++){
                         newArray[i].pop();
                     }
                     this.setState({array:newArray});
+                    }
+                    
                 }
 
                 break;
@@ -104,7 +107,7 @@ class Nonogram extends Component {
                     let newArray = array;
                     let newRow = [];
                     for(let i=0; i<array[0].length; i++){
-                        newRow.push("FFFFFF");
+                        newRow.push("#DDDDDD");
                     }
                     newArray.push(newRow);
                     this.setState({array:newArray});
@@ -113,9 +116,12 @@ class Nonogram extends Component {
             case "shorter":
                 {
                     console.log("shorter");
-                    let newArray = array;
-                    newArray.pop();
-                    this.setState({array:newArray});
+                    if(array.length >1){
+                        let newArray = array;
+                        newArray.pop();
+                        this.setState({array:newArray});
+                    }
+
                 }
                 break;
             default:
