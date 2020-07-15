@@ -49,14 +49,7 @@ class Nonogram extends Component {
         }
 
     }
-    createPattern = () => {
-        //when the button is clicked, send the current pattern to the server
-        //TODO actually when button is clicked, open a modal that lets the user add a name, and then on Click
-        //inside the modal, send the pattern to the server
-        console.log('create a pattern!');
-        this.props.dispatch({type: 'SEND_PATTERN', payload: {pattern: this.state.patternBeingEdited}})
- 
-    }
+
     changeSquareColor = (outerIndex, innerIndex) => {
         //sqitch the color of a square in the current pattern show on the page by clicking it
         let newArray = this.state.patternBeingEdited;
@@ -71,7 +64,8 @@ class Nonogram extends Component {
     }
 
     submitName = (name) => {
-        console.log("the name of the pattern is", name);
+        console.log("creating a pattern named:", name);
+        this.props.dispatch({type: 'SEND_PATTERN', payload: {pattern: this.state.patternBeingEdited, name: name}})
     }
 
     changeArraySize = (array, resize) => {
@@ -183,14 +177,9 @@ class Nonogram extends Component {
                 </Box>
 
                 {/**here's where I'll have a button to make a new array */}
-                <Button onClick={this.createPattern}
-                    variant='contained'
-                    color='primary'
-                    size='small'    
-                >
-                    Save this pattern!
-                </Button>
-                {/* <SubmitPatternButton submitName={this.submitName}/> */}
+       
+        
+               <SubmitPatternButton submitName={this.submitName}/>
 
                 <PatternTable select={(id) => this.selectPattern(id)}/>
             </>

@@ -25,9 +25,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    console.log(req.body); //req.body is an array of arrays for each row
-    let sqlText = `INSERT INTO "pattern" ("masterPattern") VALUES($1)`;
-    pool.query(sqlText, [req.body.pattern]).then( () =>{
+    console.log("post route", req.body); //req.body is an array of arrays for each row
+    let sqlText = `INSERT INTO "pattern" ("masterPattern", "name") VALUES($1, $2)`;
+    pool.query(sqlText, [req.body.pattern, req.body.name]).then( () =>{
         res.sendStatus(200);
     }).catch( error => {
         console.log('error in adding that pattern to the database', error);

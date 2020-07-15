@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class CrossStitchPattern extends Component {
     state = ({
-        crossStitchId: 1
+        crossStitchId: 1,
     })
     componentDidMount(){
         this.props.dispatch({type: 'FETCH_A_CROSSSTITCH', payload:{id: this.state.crossStitchId}});

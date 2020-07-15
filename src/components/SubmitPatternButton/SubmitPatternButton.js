@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
+  const [name, setName] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,7 +22,7 @@ export default function FormDialog(props) {
   const handleSubmit = () => {
     setOpen(false);
     console.log('hi ice cream');
-        //props.submitName("ice cream");
+        props.submitName(name);
   };
 
   
@@ -39,6 +40,9 @@ export default function FormDialog(props) {
           </DialogContentText>
           <TextField
             autoFocus
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
             margin="dense"
             id="name"
             label="Pattern Name"
