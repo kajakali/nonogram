@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Nonogram from '../Nonogram/Nonogram';
+import CrossStitchPattern from '../CrossStitchPattern/CrossStitchPattern';
 
 
 
@@ -34,6 +35,7 @@ function App() {
       </header> */}
 
       <Nonogram />
+      <CrossStitchPattern />
     </div>
   );
 }

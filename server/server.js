@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 
 // Route includes
 const patternRouter = require('./routes/pattern.router');
+const crossStitchRouter = require('./routes/crossstitch.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Routes */
 app.use('/pattern', patternRouter);
+app.use('/crossstitch', crossStitchRouter);
 
 
 // Serve static files
