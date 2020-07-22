@@ -29,3 +29,4 @@ I'm playing around here. Eventual goals:
     -if not, give it an alphanumeric and push the object into the symbol array. 
     -probably end up with a text that looks something like: 3,3,3,3,|,4,4,g,4,_g,g,g,g,|,4,4,g,4,_
     -use that text to make an array of objects for the pattern section
+    - could also probably use an object - {1-1:{color: "red", display: "symbol", symbol:"3"}}

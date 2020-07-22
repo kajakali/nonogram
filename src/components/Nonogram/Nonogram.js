@@ -7,6 +7,7 @@ import PatternTable from '../../PatternTable/PatternTable';
 import DisplayPattern from '../DisplayPattern/DisplayPattern';
 import ChooseArraySize from '../ChooseArraySize/ChooseArraySize';
 import SubmitPatternButton from '../SubmitPatternButton/SubmitPatternButton';
+import ShowAnObject from '../ShowAnObject/ShowAnObject';
 
 const pink = '#F7BCAF';
 const orange = '#F7DEAF'; 
@@ -131,7 +132,6 @@ class Nonogram extends Component {
     }    
 
     selectPattern = (id) => {
-        console.log('click', id);
         this.setState({ patternId: id});
     }
 
@@ -182,6 +182,7 @@ class Nonogram extends Component {
                <SubmitPatternButton submitName={this.submitPattern}/>
 
                 <PatternTable select={(id) => this.selectPattern(id)}/>
+                <ShowAnObject />
             </>
         );
     }
