@@ -63,7 +63,7 @@ class Nonogram extends Component {
     
     }
 
-    submitName = (name) => {
+    submitPattern = (name) => {
         console.log("creating a pattern named:", name);
         this.props.dispatch({type: 'SEND_PATTERN', payload: {pattern: this.state.patternBeingEdited, name: name}})
     }
@@ -179,7 +179,7 @@ class Nonogram extends Component {
                 {/**here's where I'll have a button to make a new array */}
        
         
-               <SubmitPatternButton submitName={this.submitName}/>
+               <SubmitPatternButton submitName={this.submitPattern}/>
 
                 <PatternTable select={(id) => this.selectPattern(id)}/>
             </>
