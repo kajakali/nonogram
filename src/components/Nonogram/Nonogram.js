@@ -21,8 +21,7 @@ class Nonogram extends Component {
         patternBeingEdited: [],
         //this is the color currently being used to edit the pattern
         selectedColor: purple,
-        colorOptions: [],
-        databasePattern: [],
+        colorOptions: [], //this should eventually be removed? and perhaps the color options should really be selected from either all the colors in the array, or from the colors chosen by a color picker?
         //this is the pattern that we are supposed to be matching to, the one that is currently shown as an array
         masterPattern: [],
         patternId: 0

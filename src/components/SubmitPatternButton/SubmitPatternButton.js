@@ -30,7 +30,7 @@ export default function FormDialog(props) {
   return (
     <div>
       <Button variant="outlined" color="primary" size="small" onClick={handleClickOpen}>
-        Open form dialog
+        Name and submit your pattern
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Choose a Name</DialogTitle>
