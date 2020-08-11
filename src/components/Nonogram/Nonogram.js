@@ -8,6 +8,7 @@ import DisplayPattern from '../DisplayPattern/DisplayPattern';
 import ChooseArraySize from '../ChooseArraySize/ChooseArraySize';
 import SubmitPatternButton from '../SubmitPatternButton/SubmitPatternButton';
 import ShowAnObject from '../ShowAnObject/ShowAnObject';
+import BoxFrame from '../BoxFrame/BoxFrame';
 
 const pink = '#F7BCAF';
 const orange = '#F7DEAF'; 
@@ -171,7 +172,7 @@ class Nonogram extends Component {
                 <Box>
                 <p>make a pattern here:</p>
                 <ChooseArraySize patternArray={this.state.patternBeingEdited} changeArraySize={(resize) => this.changeArraySize(this.state.patternBeingEdited, resize)}/>
-                <h3>here's the display pattern component displaying the master pattern</h3>
+                <h3>here's the display pattern component displaying the pattern being edited</h3>
                 <DisplayPattern patternToShow={this.state.patternBeingEdited} changeSquareColor={this.changeSquareColor}/>
                 </Box>
 
@@ -182,6 +183,7 @@ class Nonogram extends Component {
 
                 <PatternTable select={(id) => this.selectPattern(id)}/>
                 <ShowAnObject />
+                <BoxFrame />
             </>
         );
     }
