@@ -3,7 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import Nonogram from '../Nonogram/Nonogram';
 import CrossStitchPattern from '../CrossStitchPattern/CrossStitchPattern';
-
+import {
+  HashRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 
 
 //TODO GENERAL:
