@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Nonogram from '../Nonogram/Nonogram';
 import CrossStitchPattern from '../CrossStitchPattern/CrossStitchPattern';
+import FourOhFour from './FourOhFour'; 
 import {
   HashRouter as Router,
   Route,
@@ -87,7 +88,7 @@ function App() {
           component={IndividualProject}
         /> */}
         {/* If none of the other routes matched, we will show a 404. */}
-        <Route render={() => <h1>404</h1>} />
+        <Route component={FourOhFour} />
       </Switch>
  {/*      <Footer /> */}
     </div>
