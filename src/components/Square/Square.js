@@ -6,14 +6,18 @@ const useStyles = makeStyles({
         backgroundColor: props.backgroundColor,
       }),
     root: {
-      color: 'white',
+      color: '#DDDDDD',
       height: 13    ,
       width: 13,
-      marginTop: 1,
-      marginRight: 1,
+      borderTop: "1px #FFFFFF",
+      borderLeft: "1px #FFFFFF",
+
 
       display: 'inline-block',
     },
+    highlight: {
+      borderColor: "#EEEEEE"
+    }
   });
 
 
@@ -24,7 +28,7 @@ export default function Square(props) {
 
     return(
         <>
-            <div className={`${classes.root} ${classes.color}`}  
+            <div className={`${classes.root} ${classes.color} ${props.highlight && classes.highlight}`}  
             onClick={props.onClick}   
             />
         </>

@@ -159,9 +159,18 @@ class Nonogram extends Component {
                 <h2>Color Choices!!!</h2>
 
                 {/**this is where the possible colors are turned into clickable squares */}
-                <Box>
+                <Box >
                 {this.state.colorOptions.map((color, colorIndex) => (
+                    <>
+                    {color === this.state.selectedColor
+                    ?
+                    <Square key={colorIndex} highlight={true} backgroundColor={color} onClick ={() => this.changeColor(color, colorIndex)}/>
+                    :
                     <Square key={colorIndex} backgroundColor={color} onClick ={() => this.changeColor(color, colorIndex)}/>
+                    }
+                   
+
+                    </>
                 ))}
                 </Box>
                 <Box>
