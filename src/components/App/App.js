@@ -15,7 +15,7 @@ import {
 //TODO GENERAL:
 //get a router in here so that I can send people to a page to show a pattern to work on by its id
 //get a table of all the patterns in the database
-function App() {
+function App(props) {
   return (
     <Router>
         <header>
@@ -24,6 +24,7 @@ function App() {
       me to work on how to build a nonogram/griddler type puzzle in react
       Right now, you can select a color from one of the color choice squares
       and then any square you click will turn that color. I started this around June 15th, 2020.</p>
+      <p>{JSON.stringify(props)}</p>
     </header>
     <div>
       {/* <Nav /> */}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Square from '../Square/Square';
 import Box from '@material-ui/core/Box';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import PatternTable from '../../PatternTable/PatternTable';
 import DisplayPattern from '../DisplayPattern/DisplayPattern';
@@ -183,6 +184,7 @@ class Nonogram extends Component {
 
                 <PatternTable select={(id) => this.selectPattern(id)}/>
                 <ShowAnObject />
+                <Button color="primary" variant='contained' onClick={() => this.props.history.push('/crossstitch')}>Go see the cross stitch page</Button>
                 <BoxFrame />
             </>
         );
@@ -194,4 +196,4 @@ const mapStateToProps = (store) => ({
     store
   });
 
-export default connect(mapStateToProps)(Nonogram);
+export default withRouter(connect(mapStateToProps)(Nonogram));
