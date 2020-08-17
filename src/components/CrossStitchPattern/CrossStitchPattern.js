@@ -14,7 +14,7 @@ class CrossStitchPattern extends Component {
             <>
             I'm a cross stitch pattern
             {JSON.stringify(this.props.store.crossStitch)}
-            <Button color='primary' variant='contained' onClick={this.props.history.push('/nonogram')}>Go to the nonogram section</Button>
+            <Button color='primary' variant='contained' onClick={() => this.props.history.push('/nonogram')}>Go to the nonogram section</Button>
             </>
         )
     }

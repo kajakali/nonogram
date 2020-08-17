@@ -9,7 +9,9 @@ const useStyles = makeStyles({
       color: 'white',
       height: 13    ,
       width: 13,
-      margin: 1,
+      marginTop: 1,
+      marginRight: 1,
+
       display: 'inline-block',
     },
   });
