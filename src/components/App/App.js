@@ -20,7 +20,7 @@ function App(props) {
   return (
     <Box p={4}>
           <Router>
-            <header>
+            <header styles={{backgroundColor: '#EEEEEE'}}>
           <h1>colorful logic problems!</h1>
           <p>Hello. This is not a complete app, it's just a place for
           me to work on how to build a nonogram/griddler type puzzle in react

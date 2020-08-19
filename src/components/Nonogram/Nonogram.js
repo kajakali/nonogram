@@ -10,6 +10,8 @@ import ChooseArraySize from '../ChooseArraySize/ChooseArraySize';
 import SubmitPatternButton from '../SubmitPatternButton/SubmitPatternButton';
 import ShowAnObject from '../ShowAnObject/ShowAnObject';
 import BoxFrame from '../BoxFrame/BoxFrame';
+import SearchFunction from '../SearchFunction/SearchFunction';
+import SearchResults from '../SearchResults/SearchResults';
 
 const pink = '#F7BCAF';
 const orange = '#F7DEAF'; 
@@ -144,7 +146,9 @@ class Nonogram extends Component {
         return(
             <>
                 <h1>I'm a nonogram!</h1>
-
+                <h2>Search function</h2>
+                <SearchFunction/>
+                <SearchResults/>
                 <h2>here's the pattern you've selected from the table of patterns (this one is not editable!)</h2>
 
                 {/**this is the master pattern that we just got back from the server - we can't edit this one */}
